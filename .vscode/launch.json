@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Run Script",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "${workspaceFolder}/.env/Scripts/python",
+            "program": "${workspaceFolder}/modules/myinteger/myint.py",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Install Python Packages"
+        },
+        {
+            "name": "Run Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/.env/Scripts/python",
+            "module": "pytest",
+            "args": [],
+            "justMyCode": false,
+            "preLaunchTask": "Install Python Packages",
+        }
+    ]
+}

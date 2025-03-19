@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+    //  "command": "python -m venv .env",  // Create a virtual environment
+      "command": "if (-Not (Test-Path .\\env)) { python -m venv .\\env } else { Write-Host 'Virtual environment already exists' }",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",  // Don't reveal the terminal on task execution
+        "panel": "shared"  // Open the task in a new terminal
+      },
+      "problemMatcher": [],
+      "detail": "Creates a virtual environment in the project folder."
+    },
+    {
+      "label": "Activate Virtual Environment",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.env\\Scripts\\activate",
+      "group": "build",
+      "dependsOn": "Install Dependencies",  // Runs Install Dependencies first
+      "presentation": {
+        "reveal": "silent",  // Don't reveal the terminal on task execution
+        "panel": "shared"  // Open the task in a new terminal
+      },
+      "problemMatcher": [],
+      "detail": "Activates the virtual environment."
+    },
+    {
+      "label": "Install Python Packages",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.env\\Scripts\\pip.exe install --upgrade -r requirements.txt",
+      "group": "build",
+      "dependsOn": "Activate Virtual Environment",  // Activates virtual environment first
+      "presentation": {
+        "reveal": "silent",  // Don't reveal the terminal on task execution
+        "panel": "shared"  // Open the task in a new terminal
+      },
+      "problemMatcher": [],
+      "detail": "Installs Python dependencies from requirements.txt"
+    }
+  ]
+}
